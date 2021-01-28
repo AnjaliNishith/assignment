@@ -12,7 +12,32 @@
 Enter Zip Code : <input type="text" name="zip"><br><br>
 <input type="submit" value="Search">
 </form>
-
+<div id="displayDiv" style="display:none"><h3>JSON Data returned from Server after processing</h3>
+		<div id="processedData"></div>
+	</div>
+<script>
+	jQuery(document).ready(function($) {
+ 
+		$("#submit").click(function(){
+			
+			
+			
+			$.ajax({
+				type : "GET",
+				contentType : "application/json",
+				url : "searchByZipCode",
+				
+				dataType : 'json',				
+				success : function(data) {
+					$('#processedData').html(JSON.stringify(data));
+					$('#displayDiv').show();
+				}
+			});
+		});
+ 
+	});
+</script>	
+ 
 
 </body>
 </html>
